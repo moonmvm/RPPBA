@@ -8,7 +8,7 @@ setup(
     description='Backend for rppba university project',
     packages=find_packages(),
     install_requires=[
-        'django==2.2.9',
+        'django==2.2.10',
         'djangorestframework==3.11.0',
         'gunicorn==20.0.4',
         'Jinja2==2.10.3',
