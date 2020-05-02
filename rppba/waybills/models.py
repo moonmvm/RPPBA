@@ -13,7 +13,7 @@ class Clientele(models.Model):
 
 
 class Waybill(models.Model):
-    number = models.CharField(max_length=20, default=factories_utils.generate_random_string(),
+    number = models.CharField(max_length=20, default=factories_utils.generate_barcode(),
                               blank=False, null=False)
     firm_participant = models.ForeignKey(Clientele, on_delete=models.CASCADE,
                                          related_name='firm_participant_waybill')
