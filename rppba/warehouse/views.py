@@ -29,3 +29,13 @@ class CellViewSet(viewsets.GenericViewSet,
                   mixins.RetrieveModelMixin):
     serializer_class = CellSerializer
     queryset = Cell.objects.all()
+
+    @decorators.action(
+        methods=['GET'],
+        detail=False,
+        url_path='empty-cells',
+    )
+    def get_empty_cells(self, request):
+        empty_cells = self.get_queryset().filter(actual_size=0)
+        serializer = self.get_serializer(empty_cells, many=True)
+        return response.Response(data=serializer.data, status=status.HTTP_200_OK)
