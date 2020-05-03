@@ -16,5 +16,4 @@ class WaybillSerializer(serializers.ModelSerializer):
 
 
 class WaybillReadOnlySerializer(WaybillSerializer):
-    firm_participant = ClienteleSerializer()
     clientele_participant = ClienteleSerializer()

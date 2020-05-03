@@ -9,6 +9,7 @@ from rest_framework import (
 from . import serializers
 from .models import Nomenclature, Product
 from warehouse.models import Cell
+from warehouse.serializers import CellSerializer
 from utils import constants
 
 
@@ -136,3 +137,13 @@ class ProductViewSet(viewsets.GenericViewSet, mixins.RetrieveModelMixin):
                 status=status.HTTP_400_BAD_REQUEST,
             )
         return response.Response(data={'error': 'Must be raw material'}, status=status.HTTP_400_BAD_REQUEST)
+
+    @decorators.action(
+        methods=['GET'],
+        detail=True,
+        url_path='cells',
+    )
+    def get_product_cells(self, request, pk=None):
+        cells = self.get_object().cell.all()
+        serializer = CellSerializer(cells, many=True)
+        return response.Response(data=serializer.data, status=status.HTTP_200_OK)

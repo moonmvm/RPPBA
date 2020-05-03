@@ -7,11 +7,6 @@ class AutoName(Enum):
         return name
 
 
-class Clientele(AutoName):
-    CLIENT = auto()
-    PROVIDER = auto()
-
-
 class NomenclatureType(AutoName):
     PRODUCT = auto()
     RAW_MATERIAL = auto()
@@ -31,7 +26,6 @@ class Waybill(AutoName):
     SELLING = auto()
 
 
-CLIENTELE_TYPE = enum_choices_factory(Clientele)
 NOMENCLATURE_TYPE = enum_choices_factory(NomenclatureType)
 NOMENCLATURE_KIND = enum_choices_factory(NomenclatureKind)
 WAYBILL_TYPE = enum_choices_factory(Waybill)
