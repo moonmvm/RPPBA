@@ -15,6 +15,7 @@ class Nomenclature(models.Model):
 class Product(models.Model):
     cell = models.ManyToManyField('warehouse.Cell', related_name='product', blank=True)
     nomenclature = models.ForeignKey(Nomenclature, on_delete=models.PROTECT, related_name='product')
+    image = models.ImageField(blank=True, null=True)
     amount = models.PositiveIntegerField()
     price = models.FloatField()
     date_of_manufacture = models.DateTimeField()

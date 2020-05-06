@@ -12,6 +12,7 @@ setup(
         'djangorestframework==3.11.0',
         'gunicorn==20.0.4',
         'Jinja2==2.10.3',
+        'Pillow=7.1.2',
     ],
     include_package_data=True,
 )

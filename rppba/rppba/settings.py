@@ -34,6 +34,7 @@ REST_FRAMEWORK = {
 
 THIRD_PARTY_PACKAGES = [
     'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 PROJECT_APPS = [
@@ -41,6 +42,7 @@ PROJECT_APPS = [
     'warehouse',
     'products',
     'waybills',
+    'users',
 ]
 
 INSTALLED_APPS = [
@@ -53,6 +55,15 @@ INSTALLED_APPS = [
     *THIRD_PARTY_PACKAGES,
     *PROJECT_APPS,
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -114,6 +125,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'users.User'
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -133,3 +146,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

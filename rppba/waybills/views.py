@@ -32,4 +32,6 @@ class WaybillViewSet(viewsets.GenericViewSet,
         serializer = serializers.WaybillSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
+        request.user.amount_of_waybills += 1
+        request.user.save()
         return response.Response(status=status.HTTP_201_CREATED)
