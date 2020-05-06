@@ -126,11 +126,9 @@ class ProductViewSet(viewsets.GenericViewSet, mixins.RetrieveModelMixin):
             serializer.is_valid(raise_exception=True)
             amount = serializer.validated_data['amount']
             cell = Cell.objects.get(pk=serializer.validated_data['cell_id'])
-            if cell in product.cell.all() and amount <= product.amount:
+            if cell in product.cell.all():
                 cell.actual_size -= amount
-                product.amount -= amount
                 cell.save()
-                product.save()
                 return response.Response(status=status.HTTP_200_OK)
             return response.Response(
                 data={'error': 'Product does not have such cell'},
